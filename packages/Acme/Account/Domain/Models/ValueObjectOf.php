@@ -6,7 +6,7 @@ namespace Acme\Account\Domain\Models;
 trait ValueObjectOf
 {
     /**
-     * @param $value
+     * @param mixed $value
      * @return self
      */
     public static function of($value): self
