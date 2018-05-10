@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/shin1x1/independent-core-layer-laravel.svg?style=svg)](https://circleci.com/gh/shin1x1/independent-core-layer-laravel)
 
+![independent-core-layer-pattern](https://user-images.githubusercontent.com/88324/39868526-f39c9354-5494-11e8-8012-1170e7004ff4.png)
+
 ## Requirements
 
 * Docker ( I tested on Docker for Mac. )
