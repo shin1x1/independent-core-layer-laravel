@@ -1,0 +1,48 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:1.12
+    ports:
+      - '8000:80'
+      - '8001:8001'
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    links:
+      - php-fpm
+    restart: always
+  php-fpm:
+    build: "./docker/php-fpm/"
+    volumes:
+      - .:/var/www/html
+      - ./docker/php-fpm/php.ini:/usr/local/etc/php/conf.d/zzmyphp.ini
+      - ./docker/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.d/zzmyphp-fpm.conf
+    links:
+      - db
+      - db-test
+    restart: always
+  composer:
+    image: composer
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+  phpstan:
+    image: phpstan/phpstan
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+  db:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=app
+      - LC_ALL=C
+  db-test:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=app
+      - LC_ALL=C

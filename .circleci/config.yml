@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    machine: true
+
+    steps:
+      - checkout
+
+      - run: docker-compose -v
+      - run: docker-compose run php-fpm php -v
+
+      - run: make install
+      - run: make phpstan
+      - run: make phpcs
+      - run: make test
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
