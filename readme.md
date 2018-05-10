@@ -1,6 +1,6 @@
-# Independent Core Application pattern with Laravel
+# Independent core layer pattern with Laravel
 
-
+[![CircleCI](https://circleci.com/gh/shin1x1/independent-core-layer-laravel.svg?style=svg)](https://circleci.com/gh/shin1x1/independent-core-layer-laravel)
 
 ## Requirements
 
@@ -26,4 +26,25 @@ $ docker-compose run composer install --prefer-dist --no-interaction
 $ docker-compose exec php-fpm php artisan key:generate
 $ docker-compose exec php-fpm php artisan migrate
 $ docker-compose exec php-fpm php artisan db:seed
+```
+
+## Usage
+
+### GetAccount
+
+```
+$ curl -H 'Content-Type: application/json' http://localhost:8000/api/accounts/A00001 | jq .
+{
+  "account_number": "A00001",
+  "balance": 3000
+}
+```
+
+### TransferMoney
+
+```
+$ curl -X PUT -d '{"destination_number":"B00001","money":100}' -H 'Content-Type: application/json' http://localhost:8000/api/accounts/A00001/transfer | jq .
+{
+  "balance": 2900
+}
 ```
