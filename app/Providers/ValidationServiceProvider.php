@@ -15,7 +15,6 @@ final class ValidationServiceProvider extends ServiceProvider
         $validator = $this->app->make('validator');
 
         $validator->extend('account_number', function (
-            /** @noinspection PhpUnusedParameterInspection */
             $attribute,
             $value
         ) {
