@@ -3,6 +3,7 @@
  * @var Router $router
  */
 
+use App\Action\DDDStyleTransferMoney\DDDStyleTransferMoneyAction;
 use App\Action\GetAccount\GetAccountAction;
 use App\Action\TransferMoney\TransferMoneyAction;
 use Illuminate\Routing\Router;
@@ -22,3 +23,5 @@ $router->get('/accounts/{accountNumber}', GetAccountAction::class)
 $router->put('/accounts/{accountNumber}/transfer', TransferMoneyAction::class)
     ->where('accountNumber', '[A-Z][0-9]{1,10}');
 
+$router->put('/accounts/{accountNumber}/ddd-transfer', DDDStyleTransferMoneyAction::class)
+    ->where('accountNumber', '[A-Z][0-9]{1,10}');
