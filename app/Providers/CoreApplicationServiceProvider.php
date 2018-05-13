@@ -6,9 +6,11 @@ namespace App\Providers;
 use Acme\Account\UseCase\DDDStyleTransferMoney\DDDStyleTransferMoney;
 use Acme\Account\UseCase\GetAccount\GetAccount;
 use Acme\Account\UseCase\Ports\TransactionPort;
+use Acme\Account\UseCase\ProcedureStyleTransferMoney\ProcedureStyleTransferMoney;
 use Acme\Account\UseCase\TransportMoney\TransferMoney;
 use App\Action\DDDStyleTransferMoney\DDDStyleTransferMoneyAdapter;
 use App\Action\GetAccount\GetAccountAdapter;
+use App\Action\ProcedureStyleTransferMoney\ProcedureStyleTransferMoneyAdapter;
 use App\Action\TransferMoney\TransferMoneyAdapter;
 use Illuminate\Database\Connection;
 use Illuminate\Support\ServiceProvider;
@@ -60,6 +62,16 @@ final class CoreApplicationServiceProvider extends ServiceProvider
             $adapter = app(DDDStyleTransferMoneyAdapter::class);
 
             return new DDDStyleTransferMoney(
+                $adapter,
+                $adapter,
+                app(TransactionPort::class)
+            );
+        });
+
+        $this->app->bind(ProcedureStyleTransferMoney::class, function () {
+            $adapter = app(ProcedureStyleTransferMoneyAdapter::class);
+
+            return new ProcedureStyleTransferMoney(
                 $adapter,
                 $adapter,
                 app(TransactionPort::class)
