@@ -32,8 +32,7 @@ final class DDDStyleTransferMoney
         DDDStyleTransferMoneyQuery $query,
         DDDStyleTransferMoneyCommandPort $command,
         TransactionPort $transaction
-    )
-    {
+    ) {
         $this->query = $query;
         $this->command = $command;
         $this->transaction = $transaction;
@@ -51,8 +50,7 @@ final class DDDStyleTransferMoney
         AccountNumber $destinationNumber,
         Money $amount,
         TransactionTime $now
-    ): Balance
-    {
+    ): Balance {
         return $this->transaction->transaction(function () use ($sourceNumber, $destinationNumber, $amount, $now) {
             $aggregate = $this->query->find($sourceNumber, $destinationNumber);
 
