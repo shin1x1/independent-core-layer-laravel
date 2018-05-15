@@ -4,6 +4,8 @@
 
 ![independent-core-layer-pattern](https://user-images.githubusercontent.com/88324/39868526-f39c9354-5494-11e8-8012-1170e7004ff4.png)
 
+[blog](http://blog.shin1x1.com/entry/independent-core-layer-pattern)
+
 ## Requirements
 
 * Docker ( I tested on Docker for Mac. )
