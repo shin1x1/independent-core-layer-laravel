@@ -15,7 +15,7 @@
 ## Installation
 
 ```bash
-$ git this_repo
+$ git clone this_repo
 $ cd this_repo
 $ make
 ```
